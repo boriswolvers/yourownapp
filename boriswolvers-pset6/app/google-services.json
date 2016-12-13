@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "127881094394",
+    "firebase_url": "https://rijksapp.firebaseio.com",
+    "project_id": "rijksapp",
+    "storage_bucket": "rijksapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127881094394:android:bd4a4a93083134ff",
+        "android_client_info": {
+          "package_name": "com.example.boris.rijksapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127881094394-nvatij473emj5bmgc11dgvsqe6nlooa3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.boris.rijksapp",
+            "certificate_hash": "84CB39759A3B66A81B8E835F664A0E33CD68EA65"
+          }
+        },
+        {
+          "client_id": "127881094394-efp3m774cn02ul70nf0pnbqsril2aumu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRRGQlf0buGC-kZdqGZTDJJsW71myCTx4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127881094394-efp3m774cn02ul70nf0pnbqsril2aumu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

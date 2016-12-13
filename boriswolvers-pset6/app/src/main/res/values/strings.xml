@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Rijks Collectie</string>
+    <string name="action_favs">Favorieten</string>
+    <string name="action_logOut">Log Uit</string>
+</resources>
