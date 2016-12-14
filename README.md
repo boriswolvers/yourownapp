@@ -8,7 +8,7 @@ Below the recyclerviewer there is a search bar. Users can find artworks by filli
 
 ### Use of Firebase
 First encounter of Firebase is when the app launches, namely the log in screen (see pictures below). Users can sign in with their Google account. A connection is made to Firebase where the user is listed. 
-The second usage of Firebase is of course the database. When a user want to add their artwork to their favorites it will be saved into the real time database. For each individual user their favorites will be saved seperately.
+The second usage of Firebase is of course the database. When a user wants to add their artwork to their favorites it will be saved into the real time database. For each individual user their favorites will be saved seperately.
 
 ### Use of sharedpreference to save small amount of data
 When a user signs in, their name of his/her Google account will be saved and used as a welcome message in the main screen. 
