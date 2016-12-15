@@ -18,12 +18,12 @@ class showPictureTask extends AsyncTask<String, Void, Bitmap> {
 
     protected Bitmap doInBackground(String... urls) {
 
-        // the passed url
+        // The passed url
         String stringurlOfImage = urls[0];
         URL urlOfImage = null;
 
         try {
-            // making new url using the passed string url
+            // Making new url using the passed string url
             urlOfImage = new URL(stringurlOfImage);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -31,10 +31,11 @@ class showPictureTask extends AsyncTask<String, Void, Bitmap> {
 
         Bitmap bmpOfPoster = null;
         try {
-            // saving image url into end result
-
+            // Saving image url into end result
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            bmOptions.inSampleSize = 10; // 1 = 100% if you write 4 means 1/4 = 25%
+
+            // Resize image, make it smaller
+            bmOptions.inSampleSize = 10; // 1 = 100% if you write 10 means 1/10 = 10%
             bmpOfPoster = BitmapFactory.decodeStream(urlOfImage.openConnection().getInputStream(),
                     null, bmOptions);
 
@@ -43,13 +44,13 @@ class showPictureTask extends AsyncTask<String, Void, Bitmap> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // if image could not be obtained
+        // If image could not be obtained
         return null;
     }
 
     protected void onPostExecute(Bitmap result) {
 
-        // setting the image to an imageview where getPosterImage() is called
+        // Setting the image to an imageview where showPictureTask() has been called
         posterImage.setImageBitmap(result);
     }
 }

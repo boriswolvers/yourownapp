@@ -5,19 +5,22 @@ package com.example.boris.rijksapp;
  */
 public class ArtData {
 
+    // ArtData object contains these 'columns'
     private String description;
     private String image_url;
     private String objectNumber;
 
+    // Empty constructor
     public ArtData() {}
 
+    // Initialize object
     public ArtData(String description, String image_url, String objectNumber) {
         this.description = description;
         this.image_url = image_url;
         this.objectNumber = objectNumber;
     }
 
-
+    // Getters and setters
     public String getDescription() {
         return description;
     }

@@ -13,14 +13,18 @@ import java.util.List;
  * Created by Boris on 11-12-2016.
  */
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
+
+    // Declaration of variables
     private Context context;
     private List<ArtData> my_data;
 
+    // Initialize adapter
     public CustomAdapter(Context context, List<ArtData> my_data) {
         this.context = context;
         this.my_data = my_data;
     }
 
+    // Registrates when a cardview item is clicked -> activates onlicklistener in MainActivity
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item,parent,false);
@@ -30,6 +34,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         return new ViewHolder(itemView);
     }
 
+    // Sets a CardViewItem with the right image and text from the list (containing ArtData objects)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.description.setText(my_data.get(position).getDescription());
@@ -41,6 +46,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         return my_data.size();
     }
 
+    // FindViewById methods for obtaining textview and imageview of CardViewItem
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView description;
         public ImageView imageView;

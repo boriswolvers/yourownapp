@@ -3,6 +3,7 @@
     package="com.example.boris.rijksapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
 
     <application
         android:name=".GoogleSignIn"
@@ -27,7 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".showArt" />
         <activity android:name=".Favorites" />
-        <activity android:name=".DatabaseSingleton"></activity>
+        <activity android:name=".DatabaseSingleton" />
     </application>
 
 </manifest>

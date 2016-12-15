@@ -25,9 +25,12 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Favorites extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener{
 
+    // Firebase and Google connection
     private static final String TAG = "Favorites";
     GoogleApiClient mGoogleApiClient;
+    private FirebaseAuth mAuth;
 
+    // Connecting to the right database, particular the data of the current user
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mRootRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
@@ -39,12 +42,15 @@ public class Favorites extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
+        // Get instance of client
         mGoogleApiClient = ((GoogleSignIn) getApplication()).getGoogleApiClient(Favorites.this, this);
 
+        // Set title for toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Favorieten");
 
+        // Sets the recyclerviewer
         mRecyclerView = (RecyclerView)findViewById(R.id.recycleViewFavs);
         mRecyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -54,6 +60,7 @@ public class Favorites extends AppCompatActivity implements
 
     @Override
     protected void onStart() {
+        // Makes connection with database
         mGoogleApiClient.connect();
         super.onStart();
 
@@ -95,16 +102,20 @@ public class Favorites extends AppCompatActivity implements
         // Handle action bar item clicks here.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_favs) {
             // Nothing, because this is already the right intent
         }
+        // Logs user off
         else if (id == R.id.action_logOut) {
+            mAuth = FirebaseAuth.getInstance();
+            mAuth.signOut();
             Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                     new ResultCallback<Status>() {
                         @Override
                         public void onResult(Status status) {
                             Intent loginscreen = new Intent(Favorites.this, LogInScreen.class);
+                            // Remove all activities from stack when user logs off
+                            loginscreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(loginscreen);
                             finish();
 
@@ -116,6 +127,7 @@ public class Favorites extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+    // Button onclicklistener, deletes all data from database and sharedpreference
     public void deleteFavorites(View view) {
         if (mConditionRef == null) {
             return;

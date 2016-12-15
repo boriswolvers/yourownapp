@@ -10,9 +10,12 @@ import android.widget.TextView;
  * Created by Boris on 11-12-2016.
  */
 public class CustomAdapterFirebase extends RecyclerView.ViewHolder {
+
+    // Declaration of variables
     Context mcontext;
     View mview;
 
+    // Initialize adapter
     public CustomAdapterFirebase(View itemView) {
         super(itemView);
         mview = itemView;
@@ -20,6 +23,7 @@ public class CustomAdapterFirebase extends RecyclerView.ViewHolder {
 
     }
 
+    // Every change in the realtime database will trigger this function to updates CardViewItem
     public void onBindViewHolder(ArtData artData) {
 
         TextView description = (TextView)itemView.findViewById(R.id.textCardFavs);

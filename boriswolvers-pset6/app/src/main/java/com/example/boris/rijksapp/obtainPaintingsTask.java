@@ -9,34 +9,34 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class obtainPaintingsTask extends AsyncTask<String, Void, String> {
-     // declaring variable for urlconnection
+     // Declaring variable for urlconnection
      private HttpURLConnection urlConnection;
 
-    // this function retrieves information of the url-link
+    // This function retrieves information of the url-link
     @Override
     protected String doInBackground(String... params) {
         try {
 
-            // params[0] is the title art user entered, pass this to the url
+            // Params[0] is the whole url String, pass this to the url
             URL urlOfArt = new URL(params[0]);
 
             try {
-                // makes a connection with the provided url-link
+                // Makes a connection with the provided url-link
                 urlConnection = (HttpURLConnection) urlOfArt.openConnection();
 
-                // reads from the source -> json object in this case
+                // Reads from the source -> json object in this case
                 BufferedReader readInfo = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                 StringBuilder totalInformation = new StringBuilder();
                 String line;
 
-                // add line per line from json to a string
+                // Add line per line from json to a string
                 while ((line = readInfo.readLine()) != null) {
                     totalInformation.append(line + "\n"); //.append('\n');
                 }
 
                 readInfo.close();
 
-                // this string will be passed to onpostexecute
+                // This string will be passed to onpostexecute
                 return totalInformation.toString();
 
             } catch (IOException e) {
@@ -48,13 +48,13 @@ public class obtainPaintingsTask extends AsyncTask<String, Void, String> {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        // if catch occures, return null -> pass to onpostexecute
+        // If catch occures, return null -> pass to onpostexecute
         return null;
     }
 
     @Override
     protected void onPostExecute(String result) {
-        // if the movie is found, pass entire string(containing info) to showmovieInfo-activity
+        // If artworks are found, pass entire string(containing info) to MainActivity
         super.onPostExecute(result);
     }
 

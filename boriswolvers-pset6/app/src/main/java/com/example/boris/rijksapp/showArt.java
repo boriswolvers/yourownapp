@@ -33,12 +33,16 @@ import java.util.Map;
 public class showArt extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
+    // Firebase and Google connection
     private static final String TAG = "showArt";
+    private FirebaseAuth mAuth;
     GoogleApiClient mGoogleApiClient;
 
+    // Gets instance of the connection made to the database
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mRootRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
+    // Variables for layout
     private String showArtInfo;
     private String title;
     private String imageURL;
@@ -50,12 +54,15 @@ public class showArt extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_art);
 
+        // Get instance of client
         mGoogleApiClient = ((GoogleSignIn) getApplication()).getGoogleApiClient(showArt.this, this);
 
+        // Sets toolbar with title
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Rijks Collectie");
 
+        // Gets artwork information from bundle
         Bundle extras = getIntent().getExtras();
         showArtInfo = extras.getString("jsonInfo");
 
@@ -90,17 +97,23 @@ public class showArt extends AppCompatActivity implements
         // Handle action bar item clicks here
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        // Goes to Favorites activity when this button is clicked
         if (id == R.id.action_favs) {
             Intent favorites = new Intent(showArt.this, Favorites.class);
             startActivity(favorites);
         }
+
+        // Logs user off
         else if (id == R.id.action_logOut) {
+            mAuth = FirebaseAuth.getInstance();
+            mAuth.signOut();
             Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                     new ResultCallback<Status>() {
                         @Override
                         public void onResult(Status status) {
                             Intent loginscreen = new Intent(showArt.this, LogInScreen.class);
+                            // Remove all activities from stack when user logs off
+                            loginscreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(loginscreen);
                             finish();
 
@@ -115,10 +128,10 @@ public class showArt extends AppCompatActivity implements
     private void setArtInfo(String stringInfo) {
 
         try {
-            // this is the main json object, obtained by parameter stringInfo
+            // This is the main json object, obtained by parameter stringInfo
             JSONObject jsonObj = new JSONObject(stringInfo);
 
-            // jsonArray inside the main json object
+            // JsonArray inside the main json object
             JSONObject jsonObjArt = jsonObj.getJSONObject("artObject");
 
             // Get title of art object
@@ -192,8 +205,11 @@ public class showArt extends AppCompatActivity implements
         }
     }
 
+    // Onclicklistener on the add button (heart shaped button)
     public void addFavorite(View view) {
 
+        // Obtaining all keys from sharedpreference to determine whether the artwork is already in
+        // Favorites list
         prefs = getSharedPreferences("ARTS", Context.MODE_PRIVATE);
         Map<String, ?> keys = prefs.getAll();
 
@@ -205,6 +221,7 @@ public class showArt extends AppCompatActivity implements
             }
         }
 
+        // If not already in favorites, add it to sharedpreference
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("title", title);
         editor.commit();
@@ -212,6 +229,7 @@ public class showArt extends AppCompatActivity implements
         Toast toast = Toast.makeText(this, "Added to your favorites!", Toast.LENGTH_SHORT);
         toast.show();
 
+        // Adding the ArtData object to the realtimedatabase
         ArtData mydata = new ArtData(title, imageURL, objectNumber);
         mConditionRef.push().setValue(mydata);
     }
