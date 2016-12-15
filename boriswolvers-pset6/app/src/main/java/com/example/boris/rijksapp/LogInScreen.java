@@ -1,5 +1,6 @@
 package com.example.boris.rijksapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import android.content.SharedPreferences;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -88,6 +90,13 @@ public class LogInScreen extends AppCompatActivity implements
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
+
+                SharedPreferences prefs = getSharedPreferences("Username", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                // Save name into sharedpreference
+                editor.putString("name", account.getDisplayName());
+                editor.commit();
+
                 firebaseAuthWithGoogle(account);
             }
         }
