@@ -1,4 +1,10 @@
 package com.example.boris.rijksapp;
+/**
+ * Created by Boris on 11-12-2016.
+ * This is the adapter Class for the recyclerviewer. Main function of this class is to set the
+ * cardviews in the recyclerviewer with the right image and description. It also contains a call to
+ * an onclicklistener.
+ */
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 
-/**
- * Created by Boris on 11-12-2016.
- */
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>{
 
     // Declaration of variables

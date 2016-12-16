@@ -1,5 +1,11 @@
 package com.example.boris.rijksapp;
 
+/**
+ * Created by Boris on 11-12-2016.
+ * Asynctask for obtaining text information of the artwork. The result will be a string of a
+ * json-object. This asynctask does NOT obtain the image of the artwork.
+ */
+
 import android.os.AsyncTask;
 import java.io.BufferedReader;
 import java.io.IOException;

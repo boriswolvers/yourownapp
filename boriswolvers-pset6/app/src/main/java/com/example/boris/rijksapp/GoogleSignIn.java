@@ -1,5 +1,8 @@
 package com.example.boris.rijksapp;
-
+/**
+ * Created by Boris on 11-12-2016.
+ * Gets a connection of the Google account.
+ */
 import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -1,7 +1,7 @@
 package com.example.boris.rijksapp;
-
 /**
  * Created by Boris on 11-12-2016.
+ * ArtData - Class creates the objects for each artwork.
  */
 public class ArtData {
 

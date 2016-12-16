@@ -1,5 +1,11 @@
 package com.example.boris.rijksapp;
 
+/**
+ * Created by Boris on 11-12-2016.
+ * This Activity will show the artwork with some additional information when user clicks on a
+ * cardview-item in the MainActivity.
+ */
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;

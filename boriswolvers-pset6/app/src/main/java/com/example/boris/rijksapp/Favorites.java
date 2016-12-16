@@ -1,5 +1,8 @@
 package com.example.boris.rijksapp;
-
+/**
+ * Created by Boris on 11-12-2016.
+ * This activity shows the favorite artworks of user.
+ */
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;

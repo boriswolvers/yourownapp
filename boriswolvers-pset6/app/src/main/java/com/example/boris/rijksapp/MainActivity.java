@@ -1,5 +1,11 @@
 package com.example.boris.rijksapp;
 
+/**
+ * Created by Boris on 11-12-2016.
+ * MainActivity of this app contains a recyclerviewer containing top artworks of Rijks Museum. From
+ * this activity the asynctasks will be called for obtaining more artworks.
+ */
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;

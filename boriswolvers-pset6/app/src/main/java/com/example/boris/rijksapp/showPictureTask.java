@@ -1,5 +1,10 @@
 package com.example.boris.rijksapp;
 
+/**
+ * Created by Boris on 11-12-2016.
+ * Asynctask for obtaining the image of the artwork.
+ */
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
